@@ -10,17 +10,13 @@
  * @return {number}
  */
 var maxSubArray = function (nums) {
-  let max = nums[0]
+  let pre = 0, maxAns = nums[0]
 
-  for (let i = 1; i <= nums.length; i++) {
-    for (let j = 0; j < nums.length; j++) {
-      const current = nums.slice(j, j + i).reduce((pre, cur) => pre + cur)
-      if (current > max) {
-        max = current
-      }
-    }
-  }
+  nums.forEach(item => {
+    pre = Math.max(pre + item, item)
+    maxAns = Math.max(pre, maxAns)
+  })
 
-  return max
+  return maxAns
 }
 // @lc code=end
